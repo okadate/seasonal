@@ -87,6 +87,7 @@ def loglikelihood(x, y, t, V, F, *dims):
     dimy = nt * ny
     sigma2 = sigma2 / (nk * dimy)
     logL = nk * dimy * np.log(sigma2) + cff
+    #print sigma2, -0.5 * logL[0][0]
     return sigma2, -0.5 * logL[0][0]
 
 
@@ -175,7 +176,7 @@ def run_kf(param, *args):
         else:
             sigma02 = sigma2
             logL0 = logL
-    print 'a, b, sigma2, logL =', a, b, sigma2, logL
+    #print 'a, b, sigma2, logL =', a, b, sigma2, logL
     return a, b, sigma2, logL, xf, Vf
 
 
@@ -227,7 +228,7 @@ def main(obs, obs_time, mod_time, fname, freq=12):
     # compute opt parameter
     #res = optimize.minimize(J, ini_param, args=args, method='Nelder-Mead', options={'disp':True, 'maxiter':100})
     #res = optimize.minimize(J, ini_param, args=args, method='Powell', options={'disp':True, 'maxiter':50})
-    res = optimize.minimize(J, ini_param, args=args, method='CG', options={'disp':True, 'maxiter':50})
+    res = optimize.minimize(J, ini_param, args=args, method='CG', options={'disp':False, 'maxiter':50})
     #res = optimize.minimize(J, ini_param, args=args, method='BFGS', options={'disp':True, 'maxiter':50})
     param = res.x
 

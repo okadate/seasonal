@@ -2,3 +2,5 @@
 *.png
 *.csv
 test/
+test_*
+.ipynb_checkpoints/
